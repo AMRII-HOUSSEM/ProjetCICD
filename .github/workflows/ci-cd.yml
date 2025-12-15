@@ -1,0 +1,31 @@
+name: Laravel & React CI/CD
+
+on:
+  push:
+    branches: [ main, develop ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up PHP
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Backend tests
+        run: |
+          cd api
+          cp .env.example .env
+          composer install
+          php artisan key:generate
+          php artisan test
+
+      - name: Frontend build
+        run: |
+          cd frontend
+          npm install
+          npm run build
