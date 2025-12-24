@@ -19,7 +19,7 @@ jobs:
       - name: Backend tests
         run: |
           cd backend
-          cp .env.example .env
+          cp backend/.env.example backend/.env
           composer install
           php artisan key:generate
           php artisan test
