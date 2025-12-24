@@ -17,8 +17,8 @@ jobs:
           php-version: '8.2'
 
       - name: Backend tests
+        working-directory: backend
         run: |
-          cd backend
           ls -al
           cp .env.example .env
           composer install
